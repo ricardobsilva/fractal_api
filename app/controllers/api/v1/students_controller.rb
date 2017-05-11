@@ -1,8 +1,12 @@
 class Api::V1::StudentsController < ApplicationController
-  before_action :find_student, only: [:update, :destroy]
+  before_action :find_student, only: [:update, :destroy, :show]
   def index
     @students = Student.all
     render json: @students
+  end
+
+  def show
+    render json: @student
   end
 
   def create

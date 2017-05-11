@@ -98,4 +98,19 @@ RSpec.describe Api::V1::StudentsController, type: :request do
       expect(response.content_type).to eq("application/json")
     end
   end
+
+  describe "#show" do
+    let(:student){create(:student, id: 3)}
+    before(:each) do
+      get "/api/v1/students/#{student.id}"
+    end
+
+    it "return a successful 200 reponse" do
+      expect(response).to be_success
+    end
+
+    it "return json content type " do
+      expect(response.content_type).to eq("application/json")
+    end
+  end
 end
