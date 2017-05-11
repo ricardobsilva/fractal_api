@@ -4,4 +4,6 @@ class Student < ApplicationRecord
   has_many :class_of_courses, through: :class_students
 
   validates :name, :birthdate, presence: true
+
+  accepts_nested_attributes_for :access_card
 end

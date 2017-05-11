@@ -37,6 +37,6 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:name, :birthdate)
+    params.require(:student).permit(:name, :birthdate, access_card_attributes: [:registration_number])
   end
 end

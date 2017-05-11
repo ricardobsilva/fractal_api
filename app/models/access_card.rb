@@ -1,3 +1,3 @@
 class AccessCard < ApplicationRecord
-  belongs_to :student
+  belongs_to :student, required: false
 end
