@@ -83,4 +83,19 @@ RSpec.describe Api::V1::StudentsController, type: :request do
       end
     end
   end
+
+  describe "#destroy" do
+    let(:student){create(:student, id: 2)}
+    before(:each) do
+      delete "/api/v1/students/#{student.id}"
+    end
+
+    it "return a successful 200 reponse" do
+      expect(response).to be_success
+    end
+
+    it "return json content type " do
+      expect(response.content_type).to eq("application/json")
+    end
+  end
 end

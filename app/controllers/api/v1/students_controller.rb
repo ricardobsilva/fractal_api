@@ -1,5 +1,5 @@
 class Api::V1::StudentsController < ApplicationController
-  before_action :find_student, only: [:update]
+  before_action :find_student, only: [:update, :destroy]
   def index
     @students = Student.all
     render json: @students
@@ -20,6 +20,11 @@ class Api::V1::StudentsController < ApplicationController
     else
       render json: @student.errors, status: 422
     end
+  end
+
+  def destroy
+    @student.destroy
+    render json: {message: "student deleted"}
   end
 
   private
