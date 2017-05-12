@@ -10,7 +10,7 @@ class Api::V1::ClassStudentsController < ApplicationController
   def create
     @registration = ClassStudent.new(registration_params)
     if @registration.save
-      @email.send_email(@registration.student.id)
+      @email.send_email(@registration.student_id)
       render json: @registration
     else
       render json: @registration.errors, status: 422
