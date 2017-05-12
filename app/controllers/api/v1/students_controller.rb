@@ -1,12 +1,10 @@
 class Api::V1::StudentsController < ApplicationController
   before_action :find_student, only: [:update, :destroy, :show]
-  before_action :import_student_elasticsearch, only: :index
-  def search_student
-  end
 
   def index
     if search_param.present?
-      @students = Student.search(search_param).records
+      @students = Elasticsearch::Model
+                    .search(search_param, search_models).records
     else
       @students = Student.all
     end
@@ -41,8 +39,8 @@ class Api::V1::StudentsController < ApplicationController
 
   private
 
-  def import_student_elasticsearch
-    Student.import
+  def search_models
+    [Student, AccessCard]
   end
 
   def search_param
